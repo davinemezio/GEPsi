@@ -1,0 +1,59 @@
+{%extends 'base.html'%} {%block title%}Pacientes{%endblock%} {%block content%}
+<div class="offset-1 col-10 list-div">
+  <h1>Pacientes</h1>
+  <a id="add-link" href="newpaciente/">
+    <div class="col-2 add-div">
+      <i class="fas fa-plus"></i>Adicionar paciente
+    </div>
+  </a>
+  <div class="col-9 search-div">
+    <input
+      class="form-control"
+      type="text"
+      id="search"
+      name="search"
+      placeholder="Digite o nome para buscar"
+    />
+    <i class="fas fa-search"></i>
+  </div>
+  {%if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
+      {{message}}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <ul class="task-list">
+    {% for paciente in paciente %}
+    <li class="task-item">
+      <span><a href="/paciente/{{paciente.id}}">{{paciente.nome}}</a></span>
+      <span
+        ><a href="delpaciente/{{paciente.id}}"><i class="fas fa-trash"></i></a
+      ></span>
+      <a href="editpaciente/{{paciente.id}}"
+        ><span><i class="fas fa-edit"></i></span
+      ></a>
+    </li>
+    {% endfor %}
+  </ul>
+  <div class="pagination">
+    <span class="step-links">
+      {% if paciente.has_previous %}
+      <a href="?page={{paciente.previous_page_number}}"
+        ><i class="fas fa-arrow-left"></i
+      ></a>
+      {% endif %}
+      <span class="current"
+        >{{paciente.number}} de {{paciente.paginator.num_pages}}</span
+      >
+      {% if paciente.has_next %}
+      <a href="?page={{paciente.next_page_number}}"
+        ><i class="fas fa-arrow-right"></i
+      ></a>
+      {% endif %}
+    </span>
+  </div>
+</div>
+{%endblock%}
