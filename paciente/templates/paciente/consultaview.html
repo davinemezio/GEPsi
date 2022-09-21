@@ -1,0 +1,6 @@
+{%extends 'base.html'%} {%block title%}Agenda{%endblock%} {%block content%}
+{%for paciente in paciente%}
+<p>{{ paciente.nome }}</p>
+{%for dado in consulta %}
+<p>{{ dado.data_consulta }}</p>
+{%endfor%} {%endfor%} {%endblock%}

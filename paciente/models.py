@@ -14,3 +14,12 @@ class Paciente(models.Model):
 
   def __str__(self):
     return self.nome
+
+class Consulta(models.Model):
+  data_consulta = models.DateField()
+  paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+  created_at = models.DateTimeField(auto_now_add=True)
+  update_at = models.DateTimeField(auto_now=True)
+
+  def __str__(self):
+    return (self.data_consulta, self.paciente.id)

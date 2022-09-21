@@ -1,0 +1,10 @@
+{%extends 'base.html'%} {%block title%}Agenda{%endblock%} {%block content%}
+<div class="offset-1 col-10 list-div">
+  <h1>{{paciente.nome}}</h1>
+  <p>{{paciente.id}}</p>
+  <form method="post">
+    {% csrf_token %} {{form.as_p}}
+    <input type="submit" class="btn btn-success" value="Salvar" />
+  </form>
+  {%endblock%}
+</div>

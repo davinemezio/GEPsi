@@ -1,11 +1,6 @@
-{%extends 'base.html'%} {%block title%}Pacientes{%endblock%} {%block content%}
+{%extends 'base.html'%} {%block title%}Agenda{%endblock%} {%block content%}
 <div class="offset-1 col-10 list-div">
-  <h1>Pacientes</h1>
-  <a id="add-link" href="newpaciente/">
-    <div class="col-2 add-div">
-      <i class="fas fa-plus"></i>Adicionar paciente
-    </div>
-  </a>
+  <h1>Marcar Consulta</h1>
   <div class="col-9 search-div">
     <form method="GET" id="search-form">
       <input
@@ -19,26 +14,10 @@
       <i class="fas fa-search" id="search-btn"></i>
     </form>
   </div>
-  {%if messages %}
-  <ul class="messages">
-    {% for message in messages %}
-    <li {% if message.tags %} class="alert alert-{{message.tags}}" {% endif %}>
-      {{message}}
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
   <ul class="task-list">
     {% for paciente in paciente %}
     <li class="task-item">
-      <span><a href="/paciente/{{paciente.id}}">{{paciente.nome}}</a></span>
-      <span
-        ><a href="delpaciente/{{paciente.id}}" class="delete-btn"
-          ><i class="fas fa-trash"></i></a
-      ></span>
-      <a href="editpaciente/{{paciente.id}}"
-        ><span><i class="fas fa-edit"></i></span
-      ></a>
+      <span><a href="/addconsulta/{{paciente.id}}">{{paciente.nome}}</a></span>
     </li>
     {% endfor %}
   </ul>
@@ -60,4 +39,5 @@
     </span>
   </div>
 </div>
+
 {%endblock%}
